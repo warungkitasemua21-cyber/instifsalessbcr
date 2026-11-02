@@ -156,3 +156,11 @@ Excel asli dan data pelanggan tidak disertakan dalam repository/ZIP. Unggah mela
 - https://supabase.com/docs/reference/javascript/auth-admin-createuser
 - https://supabase.com/docs/guides/getting-started/migrating-to-new-api-keys
 - https://docs.sheetjs.com/docs/getting-started/installation/nodejs/
+
+## Pembaruan peringkat insentif
+- Peringkat Sales, SPV, ASM dan lima Sales pada Overview mendahulukan status Tercapai.
+- Dalam setiap kelompok status, skor KPI diurutkan dari tertinggi ke terendah.
+- Pilihan penjualan/target tetap tersedia: status Tercapai tetap didahulukan, lalu rasio penjualan tertinggi.
+- Status dan poin sama mendapat peringkat sama; nama diurutkan alfabetis untuk tampilan yang konsisten.
+- Data tanpa skor berada di akhir dan tidak diberi nomor peringkat. Peringkat dihitung ulang sesuai filter depo.
+- Rumus skor dan kelayakan insentif tidak berubah. Enam tes lulus, build berhasil, dan 39 skor tetap cocok dengan Excel.

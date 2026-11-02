@@ -36,3 +36,11 @@ Untuk mengulang: node scripts/verify-performance.mjs /path/performance.xlsx
 | ASM | Teriyadi | 81.61 | 81.61 |
 | ASM | Aceng Komarudin | 77.49 | 77.49 |
 | Perusahaan | PT SBCR | 84.20 | 84.20 |
+
+## Pembaruan peringkat insentif
+- Peringkat Sales, SPV, ASM dan lima Sales pada Overview mendahulukan status Tercapai.
+- Dalam setiap kelompok status, skor KPI diurutkan dari tertinggi ke terendah.
+- Pilihan penjualan/target tetap tersedia: status Tercapai tetap didahulukan, lalu rasio penjualan tertinggi.
+- Status dan poin sama mendapat peringkat sama; nama diurutkan alfabetis untuk tampilan yang konsisten.
+- Data tanpa skor berada di akhir dan tidak diberi nomor peringkat. Peringkat dihitung ulang sesuai filter depo.
+- Rumus skor dan kelayakan insentif tidak berubah. Enam tes lulus, build berhasil, dan 39 skor tetap cocok dengan Excel.

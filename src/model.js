@@ -11,6 +11,13 @@ export function incentive(sales,kpi,{salesThreshold=.95,kpiThreshold=90,cap=1.2}
  return {status:factor?'Tercapai':'Tidak tercapai',points,basis:a&&!b?'Penjualan':b?'Total KPI':'—',factor};
 }
 export function ranks(rows,key){return [...rows].map(x=>({...x,rank:numeric(x[key])===null?null:1+rows.filter(y=>numeric(y[key])!==null&&y[key]>x[key]+1e-9).length})).sort((a,b)=>(a.rank??Infinity)-(b.rank??Infinity)||a.name.localeCompare(b.name));}
+// Incentive eligibility takes precedence over the selected score for people.
+export function teamRanks(rows,key='final'){
+ const eligible=row=>row.incentive?.status==='Tercapai'?1:0;
+ const better=(a,b)=>eligible(a)!==eligible(b)?eligible(a)>eligible(b):numeric(a[key])!==null&&(numeric(b[key])===null||a[key]>b[key]+1e-9);
+ return rows.map(row=>({...row,rank:numeric(row[key])===null?null:1+rows.filter(other=>better(other,row)).length}))
+  .sort((a,b)=>eligible(b)-eligible(a)||(a.rank??Infinity)-(b.rank??Infinity)||a.name.localeCompare(b.name,'id-ID'));
+}
 export function scoreSales(input,cap){
  const warnings=[];const totalWeight=sum(input.metrics.map(m=>m.weight));
  let points=0,coverage=0;

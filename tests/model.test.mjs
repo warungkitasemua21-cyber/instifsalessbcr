@@ -22,3 +22,16 @@ test('leader weights match Excel without threshold normalization or extra cap',a
  assert.deepEqual(recalculateOverview(old),o);
  assert.equal(recalculateOverview(null),null);
 });
+
+test('team ranking prioritizes incentive eligibility then descending points for all roles',async()=>{
+ const {teamRanks}=await import('../src/model.js');
+ for(const level of ['Sales','SPV','ASM']){
+  const rows=[['A',89,'Tidak tercapai'],['B',80,'Tercapai'],['C',95,'Tercapai'],['D',80,'Tercapai'],['E',70,'Tidak tercapai'],['F',null,'Data belum lengkap']].map(([name,final,status])=>({level,name,final,incentive:{status}}));
+  const result=teamRanks(rows);
+  assert.deepEqual(result.map(x=>x.name),['C','B','D','A','E','F']);
+  assert.deepEqual(result.map(x=>x.rank),[1,2,2,4,5,null]);
+  assert.deepEqual(rows.map(x=>x.name),['A','B','C','D','E','F']);
+  assert.deepEqual(teamRanks(rows.filter(x=>x.name==='A'||x.name==='B')).map(x=>x.rank),[1,2]);
+ }
+ assert.deepEqual(teamRanks([]),[]);
+});
