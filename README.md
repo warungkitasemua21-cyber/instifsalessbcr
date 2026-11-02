@@ -82,8 +82,8 @@ Header dicari pada 40 baris pertama. Baris detail dibaca berdasarkan adanya `id`
 ## Definisi perhitungan
 
 - Sales: jumlah `MIN(realisasi / target, batas KPI) × bobot × 100`. KPI berbobot positif dengan target kosong/nol atau realisasi kosong membuat skor final tidak tersedia. Nol realisasi yang benar tetap valid. Bobot harus berjumlah 100%.
-- SPV/ASM: 70% pencapaian omzet tim terhadap target 95% + 30% rata-rata skor Sales langsung terhadap target 90, mengikuti nilai editable workbook. ASM memakai Sales langsung, bukan rata-rata skor SPV.
-- PT SBCR: 70% pencapaian penjualan perusahaan terhadap target 95% + 30% **rata-rata setara skor ASM** terhadap target 90. Setiap rasio mengikuti batas KPI workbook.
+- SPV/ASM: 70% × pencapaian omzet tim × 100 + 30% × rata-rata skor Sales langsung, mengikuti nilai editable workbook. ASM memakai Sales langsung, bukan rata-rata skor SPV.
+- PT SBCR: 70% × pencapaian penjualan perusahaan × 100 + 30% × **rata-rata setara skor ASM**. Skor pimpinan tidak dibagi ambang 95%/90 dan tidak dibatasi ulang; batas per KPI Sales tetap mengikuti workbook.
 - Depo: skor KPI adalah rata-rata setara skor Sales; penjualan/OA/EC/SKU/NOO menjumlahkan target dan realisasi per Sales. Angka ini adalah agregat catatan Sales; pelanggan yang dimiliki beberapa Sales tidak dideduplikasi lintas Sales.
 - Collection depo: **rata-rata rasio Collection Sales**, bukan total pembayaran / total beban piutang. File performance tidak menyediakan denominator nominal yang diperlukan untuk rasio gabungan itu. Detail historis faktur ditampilkan terpisah.
 - Filter depo pada peringkat SPV/ASM hanya memilih pimpinan yang memiliki Sales di depo tersebut. Skor pimpinan tetap mencerminkan seluruh anggota timnya.
